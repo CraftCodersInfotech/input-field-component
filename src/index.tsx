@@ -1,4 +1,4 @@
-import { View, TextInput, Image, ImageSourcePropType } from "react-native";
+import { View, TextInput, ImageSourcePropType } from "react-native";
 import React from "react";
 interface props {
   placeholder?: string;

@@ -29,13 +29,21 @@ Make sure to install pod into react-native Project after linking given command
 
 ### InputField
 
-| Name         | Type              | Description       |
-| :----------- | :---------------- | :---------------- |
-| placeholder  | string (Require)  | Formik field name |
-| height       | number (Optional) | Default is `0`    |
-| width        | string (Optional) | Default is `0`    |
-| borderWidth  | number (Optional) | Default is `1`    |
-| borderRadius | number (Optional) | Default is `0`    |
+| Name            | Type    | Description            |
+| :-------------- | :------ | :--------------------- |
+| height          | number  | Default is `0`         |
+| width           | string  | Default is `0`         |
+| marginTop       | number  | Default is `undefined` |
+| flexDirection   | boolean | Default is `row`       |
+| borderWidth     | number  | Default is `1`         |
+| borderRadius    | number  | Default is `undefined` |
+| borderColor     | string  | Default is `black`     |
+| secureTextEntry | boolean | secureTextEntry        |
+| onChangeText    | boolean | onChangeText           |
+| value           | string  | value                  |
+| keyboardType    | any     | keyboardType           |
+| maxLength       | number  | maxLength of Text      |
+| placeholder     | string  | Formik field name      |
 
 - Example
 
