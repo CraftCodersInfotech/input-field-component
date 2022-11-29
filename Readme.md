@@ -44,6 +44,7 @@ Make sure to install pod into react-native Project after linking given command
 | keyboardType    | any     | keyboardType           |
 | maxLength       | number  | maxLength of Text      |
 | placeholder     | string  | Formik field name      |
+| showIcon        | boolean | To show Image          |
 
 - Example
 
