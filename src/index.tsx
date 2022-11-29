@@ -1,5 +1,11 @@
-import { View, TextInput, ImageSourcePropType } from "react-native";
-import React from "react";
+import {
+  View,
+  TextInput,
+  ImageSourcePropType,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import React, { useState } from "react";
 interface props {
   placeholder?: string;
   value?: string;
@@ -16,8 +22,11 @@ interface props {
   width?: string;
   borderRadius?: number;
   borderColor?: string;
+  showIcon?: boolean;
+  icon?: React.ReactNode;
 }
 const InputField = (props: props) => {
+  const [visible, setVisible] = useState(false);
   const {
     placeholder,
     value,
@@ -33,14 +42,15 @@ const InputField = (props: props) => {
     width,
     borderRadius,
     borderColor,
+    icon,
+    showIcon,
   } = props;
   return (
     <View
       style={[
         {
-          justifyContent: "center",
           alignItems: "center",
-          width: width ? width : "80%",
+          width: width ? width : "90%",
           marginTop: marginTop ? marginTop : undefined,
           flexDirection: flexDirection ? "row-reverse" : "row",
           borderWidth: borderWidth ? borderWidth : 1,
@@ -48,14 +58,13 @@ const InputField = (props: props) => {
           borderRadius: borderRadius ? borderRadius : undefined,
           borderColor: borderColor ? borderColor : "black",
         },
-        ,
       ]}
     >
       <TextInput
-        secureTextEntry={secureTextEntry}
+        secureTextEntry={visible}
         onChangeText={onChangeText}
         returnKeyType={"done"}
-        style={{ fontSize: 18, color: "black", width: "95%" }}
+        style={{ fontSize: 18, color: "black", width: "85%", marginLeft: 5 }}
         value={value}
         keyboardType={keyboardType}
         maxLength={maxLength}
@@ -63,6 +72,21 @@ const InputField = (props: props) => {
         placeholderTextColor={"gray"}
         numberOfLines={1}
       />
+      {showIcon && (
+        <TouchableOpacity onPress={() => setVisible(!visible)}>
+          {visible ? (
+            <Image
+              style={{ height: 20, width: 30, backgroundColor: "black" }}
+              source={require("../src/assets/Eye_close.png")}
+            />
+          ) : (
+            <Image
+              style={{ height: 40, width: 35, backgroundColor: "black" }}
+              source={require("../src/assets/open_eye.jpeg")}
+            />
+          )}
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
