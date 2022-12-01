@@ -7,13 +7,11 @@ import {
   ViewStyle,
   StyleProp,
   KeyboardType,
+  Text,
 } from "react-native";
 import * as React from "react";
 import { useState } from "react";
-import * as yup from "yup";
-import { Control, Controller, FieldValues, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-
+import { Control, Controller, FieldValues } from "react-hook-form";
 interface props {
   placeholder?: string;
   value?: string;
@@ -27,11 +25,10 @@ interface props {
   inputStyle: StyleProp<ViewStyle>;
   control: Control<FieldValues, any>;
   errors: any;
+  name: string;
 }
-
 const InputField = (props: props) => {
   const [visible, setVisible] = useState(false);
-
   const {
     placeholder, //The string that will be rendered before text input has been entered.
     value, //The value to show for the text input.
@@ -43,59 +40,57 @@ const InputField = (props: props) => {
     inputStyle, // Give style to TextInput
     control,
     errors,
+    name,
   } = props;
-
   return (
-    <View
-      style={[
-        { ...containerStyle, flexDirection: "row", paddingHorizontal: 5 },
-      ]}
-    >
-      <Controller
-        name="name"
-        control={control}
-        render={({ field: { onBlur, onChange, value } }) => (
-          <TextInput
-            secureTextEntry={visible}
-            onChangeText={onChange}
-            returnKeyType={"done"}
-            style={inputStyle} //use it when use icon
-            value={value}
-            keyboardType={keyboardType}
-            maxLength={maxLength}
-            placeholder={placeholder}
-            placeholderTextColor={"gray"}
-            numberOfLines={1}
-            onBlur={onBlur}
-          />
+    <>
+      <View
+        style={[
+          { ...containerStyle, flexDirection: "row", paddingHorizontal: 5 },
+        ]}
+      >
+        <Controller
+          name={name}
+          control={control}
+          render={({ field: { onBlur, onChange, value } }) => (
+            <TextInput
+              secureTextEntry={visible}
+              onChangeText={onChange}
+              returnKeyType={"done"}
+              style={inputStyle} //use it when use icon
+              value={value}
+              keyboardType={keyboardType}
+              maxLength={maxLength}
+              placeholder={placeholder}
+              placeholderTextColor={"gray"}
+              numberOfLines={1}
+              onBlur={onBlur}
+            />
+          )}
+        ></Controller>
+        {showIcon && (
+          <TouchableOpacity onPress={() => setVisible(!visible)}>
+            <View>
+              {visible ? (
+                <Image
+                  style={style.eyeClose}
+                  source={require("../src/assets/eyeClose.png")}
+                />
+              ) : (
+                <Image
+                  style={style.eyeOpen}
+                  source={require("../src/assets/eyeOpen.png")}
+                />
+              )}
+            </View>
+          </TouchableOpacity>
         )}
-      ></Controller>
-      {errors && <Text style={inputStyle.errorMsg}>{errors.message}</Text>}
-      {/* {errors.name && (
-        <Text style={inputStyle.errorMsg}>{errors.name.message}</Text>
-      )} */}
-      {showIcon && (
-        <TouchableOpacity onPress={() => setVisible(!visible)}>
-          <View>
-            {visible ? (
-              <Image
-                style={style.eyeClose}
-                source={require("../src/assets/eyeClose.png")}
-              />
-            ) : (
-              <Image
-                style={style.eyeOpen}
-                source={require("../src/assets/eyeOpen.png")}
-              />
-            )}
-          </View>
-        </TouchableOpacity>
-      )}
-    </View>
+      </View>
+      {errors && <Text>{errors[name]?.message}</Text>}
+    </>
   );
 };
 export default InputField;
-
 const style = StyleSheet.create({
   eyeClose: { height: 30, width: 30 },
   eyeOpen: { height: 30, width: 30 },
