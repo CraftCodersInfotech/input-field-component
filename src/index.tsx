@@ -38,7 +38,11 @@ const InputField = (props: props) => {
   } = props;
 
   return (
-    <View style={[{ ...containerStyle, flexDirection: "row" }]}>
+    <View
+      style={[
+        { ...containerStyle, flexDirection: "row", paddingHorizontal: 5 },
+      ]}
+    >
       <TextInput
         secureTextEntry={visible}
         onChangeText={onChangeText}
@@ -74,6 +78,6 @@ const InputField = (props: props) => {
 export default InputField;
 
 const style = StyleSheet.create({
-  eyeClose: { height: 26, width: 28 },
+  eyeClose: { height: 30, width: 30 },
   eyeOpen: { height: 30, width: 30 },
 });
