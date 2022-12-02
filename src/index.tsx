@@ -45,9 +45,7 @@ const InputField = (props: props) => {
   return (
     <>
       <View
-        style={[
-          { ...containerStyle, flexDirection: "row", paddingHorizontal: 5 },
-        ]}
+        style={[containerStyle, { flexDirection: "row", paddingHorizontal: 5 }]}
       >
         <Controller
           name={name}
@@ -86,7 +84,7 @@ const InputField = (props: props) => {
           </TouchableOpacity>
         )}
       </View>
-      {errors && <Text>{errors[name]?.message}</Text>}
+      {errors && <Text style={style.errorMsg}>{errors[name]?.message}</Text>}
     </>
   );
 };
@@ -94,4 +92,5 @@ export default InputField;
 const style = StyleSheet.create({
   eyeClose: { height: 30, width: 30 },
   eyeOpen: { height: 30, width: 30 },
+  errorMsg: { color: "red" },
 });
