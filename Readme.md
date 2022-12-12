@@ -20,7 +20,7 @@
 To add the react-native-input-field to React Native app, run this command with tag version
 
 ```
-npm install react-native-input-field
+npm install https://github.com/CraftCodersInfotech/input-field-component.git
 ```
 
 Make sure to install pod into react-native Project after linking given command
