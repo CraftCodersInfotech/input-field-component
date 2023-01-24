@@ -8,10 +8,12 @@ import {
   StyleProp,
   KeyboardType,
   Text,
-} from "react-native";
-import * as React from "react";
-import { useState } from "react";
-import { Control, Controller, FieldValues } from "react-hook-form";
+  ImageSourcePropType,
+  ImageStyle,
+} from 'react-native';
+import * as React from 'react';
+import {useState} from 'react';
+import {Control, Controller, FieldValues} from 'react-hook-form';
 interface props {
   placeholder?: string;
   value?: string;
@@ -21,11 +23,16 @@ interface props {
   secureTextEntry?: boolean;
   onPress?: () => void;
   showIcon?: boolean;
+  showLogo?: boolean;
   containerStyle: StyleProp<ViewStyle>;
   inputStyle: StyleProp<ViewStyle>;
-  control: Control<FieldValues, any>;
-  errors: any;
+  control?: Control<FieldValues, any>;
+  errors?: any;
   name: string;
+  source: any;
+  iconStyle: StyleProp<ImageStyle>;
+  passwordIconStyle: StyleProp<ImageStyle>;
+  placeholderTextColor: any;
 }
 const InputField = (props: props) => {
   const [visible, setVisible] = useState(false);
@@ -41,46 +48,57 @@ const InputField = (props: props) => {
     control,
     errors,
     name,
+    showLogo, //When to show image by in starting of textInput
+    source, //To add the image in-front of input-fiend 
+    iconStyle, // To style the icon in input-field
+    passwordIconStyle, //To style the password in the end
+    placeholderTextColor, //to change the color of placeholder
   } = props;
   return (
     <>
       <View
-        style={[containerStyle, { flexDirection: "row", paddingHorizontal: 5 }]}
-      >
+        style={[containerStyle, {flexDirection: 'row', alignItems: 'center'}]}>
+        {showLogo && (
+          <TouchableOpacity
+            style={{alignItems: 'center'}}
+            onPress={() => setVisible(!visible)}>
+            <Image style={iconStyle} source={source} />
+          </TouchableOpacity>
+        )}
         <Controller
           name={name}
           control={control}
-          render={({ field: { onBlur, onChange, value } }) => (
+          render={({field: {onBlur, onChange, value}}) => (
             <TextInput
               secureTextEntry={visible}
               onChangeText={onChange}
-              returnKeyType={"done"}
+              returnKeyType={'done'}
               style={inputStyle} //use it when use icon
               value={value}
               keyboardType={keyboardType}
               maxLength={maxLength}
               placeholder={placeholder}
-              placeholderTextColor={"gray"}
+              placeholderTextColor={placeholderTextColor}
               numberOfLines={1}
               onBlur={onBlur}
             />
           )}
-        ></Controller>
+        />
         {showIcon && (
-          <TouchableOpacity onPress={() => setVisible(!visible)}>
-            <View>
-              {visible ? (
-                <Image
-                  style={style.eyeClose}
-                  source={require("../src/assets/eyeClose.png")}
-                />
-              ) : (
-                <Image
-                  style={style.eyeOpen}
-                  source={require("../src/assets/eyeOpen.png")}
-                />
-              )}
-            </View>
+          <TouchableOpacity
+            style={{alignItems: 'center'}}
+            onPress={() => setVisible(!visible)}>
+            {visible ? (
+              <Image
+                style={passwordIconStyle}
+                source={require('../src/assets/eyeClose.png')}
+              />
+            ) : (
+              <Image
+                style={passwordIconStyle}
+                source={require('../src/assets/eyeOpen.png')}
+              />
+            )}
           </TouchableOpacity>
         )}
       </View>
@@ -90,7 +108,5 @@ const InputField = (props: props) => {
 };
 export default InputField;
 const style = StyleSheet.create({
-  eyeClose: { height: 30, width: 30 },
-  eyeOpen: { height: 30, width: 30 },
-  errorMsg: { color: "red" },
+  errorMsg: {color: 'red'},
 });

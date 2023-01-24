@@ -16,6 +16,8 @@
   "devDependencies": {
     "@hookform/resolvers": "^2.9.10",
     "@types/node": "^18.11.9",
+    "@types/react": "^18.0.27",
+    "@types/react-native": "^0.71.0",
     "react-hook-form": "^7.40.0",
     "yup": "^0.32.11"
   }
