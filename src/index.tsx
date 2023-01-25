@@ -29,10 +29,10 @@ interface props {
   control?: Control<FieldValues, any>;
   errors?: any;
   name: string;
-  source: ImageSourcePropType;
+  source?: ImageSourcePropType;
   iconStyle: StyleProp<ImageStyle>;
-  showPasswordIcon: ImageSourcePropType;
-  hidePasswordIcon: ImageSourcePropType;
+  showPasswordIcon?: ImageSourcePropType;
+  hidePasswordIcon?: ImageSourcePropType;
   passwordIconStyle: StyleProp<ImageStyle>;
   placeholderTextColor: any;
 }
