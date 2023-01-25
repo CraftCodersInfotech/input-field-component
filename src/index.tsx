@@ -106,8 +106,6 @@ const InputField = (props: props) => {
             style={{
               alignItems: 'center',
               justifyContent: 'center',
-              height: '100%',
-              width: '25%',
             }}
             onPress={() => setVisible(!visible)}>
             {visible ? (
