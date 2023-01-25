@@ -49,7 +49,7 @@ const InputField = (props: props) => {
     errors,
     name,
     showLogo, //When to show image by in starting of textInput
-    source, //To add the image in-front of input-fiend 
+    source, //To add the image in-front of input-fiend
     iconStyle, // To style the icon in input-field
     passwordIconStyle, //To style the password in the end
     placeholderTextColor, //to change the color of placeholder
@@ -57,36 +57,58 @@ const InputField = (props: props) => {
   return (
     <>
       <View
-        style={[containerStyle, {flexDirection: 'row', alignItems: 'center'}]}>
-        {showLogo && (
-          <TouchableOpacity
-            style={{alignItems: 'center'}}
-            onPress={() => setVisible(!visible)}>
-            <Image style={iconStyle} source={source} />
-          </TouchableOpacity>
-        )}
-        <Controller
-          name={name}
-          control={control}
-          render={({field: {onBlur, onChange, value}}) => (
-            <TextInput
-              secureTextEntry={visible}
-              onChangeText={onChange}
-              returnKeyType={'done'}
-              style={inputStyle} //use it when use icon
-              value={value}
-              keyboardType={keyboardType}
-              maxLength={maxLength}
-              placeholder={placeholder}
-              placeholderTextColor={placeholderTextColor}
-              numberOfLines={1}
-              onBlur={onBlur}
-            />
+        style={[
+          containerStyle,
+          {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            overflow: 'hidden',
+          },
+        ]}>
+        <View
+          style={[
+            {
+              flexDirection: 'row',
+              alignItems: 'center',
+              overflow: 'hidden',
+            },
+          ]}>
+          {showLogo && (
+            <TouchableOpacity
+              style={{alignItems: 'center'}}
+              onPress={() => setVisible(!visible)}>
+              <Image style={iconStyle} source={source} />
+            </TouchableOpacity>
           )}
-        />
+          <Controller
+            name={name}
+            control={control}
+            render={({field: {onBlur, onChange, value}}) => (
+              <TextInput
+                secureTextEntry={visible}
+                onChangeText={onChange}
+                returnKeyType={'done'}
+                style={inputStyle} //use it when use icon
+                value={value}
+                keyboardType={keyboardType}
+                maxLength={maxLength}
+                placeholder={placeholder}
+                placeholderTextColor={placeholderTextColor}
+                numberOfLines={1}
+                onBlur={onBlur}
+              />
+            )}
+          />
+        </View>
         {showIcon && (
           <TouchableOpacity
-            style={{alignItems: 'center'}}
+            style={{
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '100%',
+              width: '25%',
+            }}
             onPress={() => setVisible(!visible)}>
             {visible ? (
               <Image
