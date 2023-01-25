@@ -75,11 +75,9 @@ const InputField = (props: props) => {
             },
           ]}>
           {showLogo && (
-            <TouchableOpacity
-              style={{alignItems: 'center'}}
-              onPress={() => setVisible(!visible)}>
+            <View style={{alignItems: 'center'}}>
               <Image style={iconStyle} source={source} />
-            </TouchableOpacity>
+            </View>
           )}
           <Controller
             name={name}
