@@ -29,8 +29,10 @@ interface props {
   control?: Control<FieldValues, any>;
   errors?: any;
   name: string;
-  source: any;
+  source: ImageSourcePropType;
   iconStyle: StyleProp<ImageStyle>;
+  showPasswordIcon: ImageSourcePropType;
+  hidePasswordIcon: ImageSourcePropType;
   passwordIconStyle: StyleProp<ImageStyle>;
   placeholderTextColor: any;
 }
@@ -52,6 +54,8 @@ const InputField = (props: props) => {
     source, //To add the image in-front of input-fiend
     iconStyle, // To style the icon in input-field
     passwordIconStyle, //To style the password in the end
+    showPasswordIcon,
+    hidePasswordIcon,
     placeholderTextColor, //to change the color of placeholder
   } = props;
   return (
@@ -107,15 +111,9 @@ const InputField = (props: props) => {
             }}
             onPress={() => setVisible(!visible)}>
             {visible ? (
-              <Image
-                style={passwordIconStyle}
-                source={require('../src/assets/eyeClose.png')}
-              />
+              <Image style={passwordIconStyle} source={hidePasswordIcon} />
             ) : (
-              <Image
-                style={passwordIconStyle}
-                source={require('../src/assets/eyeOpen.png')}
-              />
+              <Image style={passwordIconStyle} source={showPasswordIcon} />
             )}
           </TouchableOpacity>
         )}
