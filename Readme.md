@@ -57,6 +57,7 @@ const App = () => {
         alignItems: 'center',
       }}
       inputStyle={{
+        // width: '90%',
         width: '90%',
       }}
       showIcon // Use only when to render image
