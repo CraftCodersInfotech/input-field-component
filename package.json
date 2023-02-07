@@ -11,6 +11,8 @@
   "license": "ISC",
   "peerdependencies": {
     "react": "^18.2.0",
-    "react-native": "^0.70.6"
+    "react-native": "^0.70.6",
+    "react-hook-form": "^7.43.0"
+
   }
 }
