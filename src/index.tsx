@@ -10,6 +10,7 @@ import {
   Text,
   ImageSourcePropType,
   ImageStyle,
+  ReturnKeyType,
 } from 'react-native';
 import * as React from 'react';
 import {useState} from 'react';
@@ -35,6 +36,9 @@ interface props {
   hidePasswordIcon?: ImageSourcePropType;
   passwordIconStyle: StyleProp<ImageStyle>;
   placeholderTextColor: any;
+  NextRef:any;
+  ReturnKeyType:ReturnKeyType;
+  onSubmitEditing:any,
 }
 const InputField = (props: props) => {
   const [visible, setVisible] = useState(false);
@@ -57,7 +61,11 @@ const InputField = (props: props) => {
     showPasswordIcon,
     hidePasswordIcon,
     placeholderTextColor, //to change the color of placeholder
+    NextRef,
+    ReturnKeyType,
+    onSubmitEditing
   } = props;
+
   return (
     <>
       <View
@@ -90,7 +98,8 @@ const InputField = (props: props) => {
               <TextInput
                 secureTextEntry={visible}
                 onChangeText={onChange}
-                returnKeyType={'done'}
+                returnKeyType={ReturnKeyType}
+                onSubmitEditing={onSubmitEditing}
                 style={inputStyle} //use it when use icon
                 value={value}
                 keyboardType={keyboardType}
@@ -99,6 +108,9 @@ const InputField = (props: props) => {
                 placeholderTextColor={placeholderTextColor}
                 numberOfLines={1}
                 onBlur={onBlur}
+              
+              ref={NextRef}
+     
               />
             )}
           />
