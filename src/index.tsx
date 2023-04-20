@@ -206,8 +206,8 @@ const InputField = (props: props) => {
                 placeholderTextColor={placeholderTextColor}
                 numberOfLines={1}
                 onBlur={onBlur}
-                multiline={true}
                 ref={NextRef}
+      
               />
             )}
           />
