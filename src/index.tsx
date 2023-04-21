@@ -63,7 +63,7 @@
 //               placeholderTextColor={"gray"}
 //               numberOfLines={1}
 //               onBlur={onBlur}
-              
+
 //             />
 //           )}
 //         ></Controller>
@@ -109,10 +109,10 @@ import {
   ImageSourcePropType,
   ImageStyle,
   ReturnKeyType,
-} from 'react-native';
-import * as React from 'react';
-import {useState} from 'react';
-import {Control, Controller, FieldValues} from 'react-hook-form';
+} from "react-native";
+import * as React from "react";
+import { useState } from "react";
+import { Control, Controller, FieldValues } from "react-hook-form";
 interface props {
   placeholder?: string;
   value?: string;
@@ -137,6 +137,7 @@ interface props {
   NextRef: any;
   ReturnKeyType: ReturnKeyType;
   onSubmitEditing: any;
+  multiline: any;
 }
 const InputField = (props: props) => {
   const [visible, setVisible] = useState(false);
@@ -162,6 +163,7 @@ const InputField = (props: props) => {
     NextRef,
     ReturnKeyType,
     onSubmitEditing,
+    multiline,
   } = props;
 
   return (
@@ -170,29 +172,31 @@ const InputField = (props: props) => {
         style={[
           containerStyle,
           {
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            overflow: 'hidden',
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            overflow: "hidden",
           },
-        ]}>
+        ]}
+      >
         <View
           style={[
             {
-              flexDirection: 'row',
-              alignItems: 'center',
-              overflow: 'hidden',
+              flexDirection: "row",
+              alignItems: "center",
+              overflow: "hidden",
             },
-          ]}>
+          ]}
+        >
           {showLogo && (
-            <View style={{alignItems: 'center'}}>
+            <View style={{ alignItems: "center" }}>
               <Image style={iconStyle} source={source} />
             </View>
           )}
           <Controller
             name={name}
             control={control}
-            render={({field: {onBlur, onChange, value}}) => (
+            render={({ field: { onBlur, onChange, value } }) => (
               <TextInput
                 secureTextEntry={visible}
                 onChangeText={onChange}
@@ -207,7 +211,7 @@ const InputField = (props: props) => {
                 numberOfLines={1}
                 onBlur={onBlur}
                 ref={NextRef}
-      
+                multiline={multiline}
               />
             )}
           />
@@ -215,10 +219,11 @@ const InputField = (props: props) => {
         {showIcon && (
           <TouchableOpacity
             style={{
-              alignItems: 'center',
-              justifyContent: 'center',
+              alignItems: "center",
+              justifyContent: "center",
             }}
-            onPress={() => setVisible(!visible)}>
+            onPress={() => setVisible(!visible)}
+          >
             {visible ? (
               <Image style={passwordIconStyle} source={hidePasswordIcon} />
             ) : (
@@ -233,5 +238,5 @@ const InputField = (props: props) => {
 };
 export default InputField;
 const style = StyleSheet.create({
-  errorMsg: {color: 'red'},
+  errorMsg: { color: "red" },
 });
