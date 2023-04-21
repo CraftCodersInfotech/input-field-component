@@ -211,7 +211,7 @@ const InputField = (props: props) => {
                 numberOfLines={1}
                 onBlur={onBlur}
                 ref={NextRef}
-                multiline={multiline}
+                multiline={multiline ?? true}
               />
             )}
           />
